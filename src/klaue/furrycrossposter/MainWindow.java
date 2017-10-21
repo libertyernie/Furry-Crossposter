@@ -119,7 +119,7 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	private JLabel lblNonworkingSizes = new JLabel();
 	private JButton btnLetsDoThisShit = new JButton("Let's do this! Select pages to upload to!");
 	
-	public MainWindow() {
+	public MainWindow(JsonArtData imported) {
 		imageInfo.addChangeListener(this);
 		FileFilter imageFilter = new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif");
 		fileChooser.setFileFilter(imageFilter);
@@ -400,6 +400,46 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		mainPanel.add(btnLetsDoThisShit);
 		
 		this.setVisible(true);
+		
+		if (imported != null) {
+			if (imported.imagePath != null) {
+				setImage(new File(imported.imagePath), false);
+			}
+			if (imported.thumbnailPath != null) {
+				setImage(new File(imported.thumbnailPath), true);
+			}
+			if (imported.title != null) {
+				titleText.setText(imported.title);
+			}
+			if (imported.description != null) {
+				descrText.setText(imported.description);
+			}
+			if (imported.violence != null) {
+				if (imported.violence.moderate)
+					ratingViolenceBox.setSelectedItem(ImageInfo.RatingViolence.VIOLENCE_MOD);
+				if (imported.violence.explicit)
+					ratingViolenceBox.setSelectedItem(ImageInfo.RatingViolence.VIOLENCE_EX);
+			}
+			if (imported.nudity != null) {
+				if (imported.nudity.moderate)
+					ratingSexualBox.setSelectedItem(ImageInfo.RatingSexual.NUDITY_MOD);
+				if (imported.nudity.explicit)
+					ratingSexualBox.setSelectedItem(ImageInfo.RatingSexual.NUDITY_EX);
+			}
+			if (imported.tags != null) {
+				for (JTextPane field : new JTextPane[] { speciesTags, otherTags }) {
+					StringBuilder sb = new StringBuilder();
+					for (String s : imported.tags) {
+						s = s.replace(" ", "_");
+						Tag.Type type = FurryCrossposter.tags.get(s).getType();
+						if (field == speciesTags ^ type != Tag.Type.SPECIES) {
+							sb.append(s + " ");
+						}
+					}
+					field.setText(sb.toString());
+				}
+			}
+		}
 	}
 	
 	/**
@@ -617,13 +657,17 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	}
 	
 	private void openImage(boolean thumb) {
-		JLabel labelToDisplay = thumb ? thumbLabel : imageLabel;
-		
 		if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
 			return;
 		}
 		
 		File imageFile = fileChooser.getSelectedFile();
+		setImage(imageFile, thumb);
+	}
+	
+	private void setImage(File imageFile, boolean thumb) {
+		JLabel labelToDisplay = thumb ? thumbLabel : imageLabel;
+		
 		BufferedImage image = null;
 		try {
 			image = ImageTools.getResizedInstance(labelToDisplay.getPreferredSize().width, labelToDisplay.getPreferredSize().height, imageFile);

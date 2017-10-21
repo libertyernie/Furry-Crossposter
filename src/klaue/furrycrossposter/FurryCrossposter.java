@@ -2,6 +2,8 @@ package klaue.furrycrossposter;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,8 +15,11 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
 
 /**
  * the main and start class of furry crossposter
@@ -30,13 +35,13 @@ public class FurryCrossposter extends JFrame {
 	/**
 	 * sets up furry crossposter
 	 */
-	public FurryCrossposter() {
+	public FurryCrossposter(JsonArtData imported) {
 		final SplashScreen splash = new SplashScreen();
 		
 		new Thread(splash).start();
 		
 		gatherData(splash);
-		new MainWindow();
+		new MainWindow(imported);
 		
 		splash.stop();
 	}
@@ -125,7 +130,26 @@ public class FurryCrossposter extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new FurryCrossposter();
+		JsonArtData imported = null;
+		if (args.length > 0) {
+			String jsonPath = args[0];
+			File file = new File(jsonPath);
+
+			try {
+				BufferedImage image = ImageIO.read(file);
+				if (image != null) {
+					imported = new JsonArtData();
+					imported.imagePath = jsonPath;
+				} else {
+					String json = String.join("", Files.readAllLines(file.toPath()));
+					imported = new Gson().fromJson(json, JsonArtData.class);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Could not read file: " + jsonPath);
+			}
+		}
+		new FurryCrossposter(imported);
 	}
 }
 
