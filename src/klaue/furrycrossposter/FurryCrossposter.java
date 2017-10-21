@@ -2,6 +2,7 @@ package klaue.furrycrossposter;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -131,10 +133,17 @@ public class FurryCrossposter extends JFrame {
 		JsonArtData imported = null;
 		if (args.length > 0) {
 			String jsonPath = args[0];
-			File jsonFile = new File(jsonPath);
+			File file = new File(jsonPath);
+
 			try {
-				String json = String.join("", Files.readAllLines(jsonFile.toPath()));
-				imported = new Gson().fromJson(json, JsonArtData.class);
+				BufferedImage image = ImageIO.read(file);
+				if (image != null) {
+					imported = new JsonArtData();
+					imported.imagePath = jsonPath;
+				} else {
+					String json = String.join("", Files.readAllLines(file.toPath()));
+					imported = new Gson().fromJson(json, JsonArtData.class);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(null, "Could not read file: " + jsonPath);
