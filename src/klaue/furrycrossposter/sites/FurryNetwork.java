@@ -87,14 +87,6 @@ public class FurryNetwork extends Site {
 		// TODO: find a less hacky way
 		driver.findElement(By.xpath("//img[@alt='" + pseudoTitle + "' and contains(@src, 'cloudfront.net')]/..")).click();
 		
-		// upload complete, delete temp file
-		try {
-			Files.delete(copiedImagePath);
-		} catch (IOException e) {
-			// not a leg break
-			e.printStackTrace();
-		}
-		
 		WebElement form = driver.findElement(By.xpath(".//form[contains(@class, 'submission-form')]"));
 		
 		if (!imageInfo.getTitle().isEmpty()) {
@@ -185,6 +177,14 @@ public class FurryNetwork extends Site {
 //		}
 		
 		showFinishMessage(driver);
+		
+		// delete temp file
+		try {
+			Files.delete(copiedImagePath);
+		} catch (IOException e) {
+			// not a leg break
+			e.printStackTrace();
+		}
 		
 		//driver.quit();
 		return true;
