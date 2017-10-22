@@ -122,7 +122,10 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		imageInfo.addChangeListener(this);
 		
 		String userhome = System.getProperty("user.home");
-		fileChooser.setCurrentDirectory(new File(userhome +"\\Pictures"));
+		File picturesDir = new File(userhome +"\\Pictures");
+		if (picturesDir.exists()) {
+			fileChooser.setCurrentDirectory(picturesDir);
+		}
 		
 		FileFilter imageFilter = new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif");
 		fileChooser.setFileFilter(imageFilter);
