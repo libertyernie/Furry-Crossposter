@@ -60,11 +60,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
 
-import klaue.furrycrossposter.sites.DeviantArt;
 import klaue.furrycrossposter.sites.E621;
 import klaue.furrycrossposter.sites.FurAffinity;
 import klaue.furrycrossposter.sites.FurryNetwork;
-import klaue.furrycrossposter.sites.InkBunny;
 import klaue.furrycrossposter.sites.Site;
 import klaue.furrycrossposter.sites.Weasyl;
 import klaue.furrycrossposter.sites.sofurry.SoFurry;
@@ -75,11 +73,9 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	private static final long serialVersionUID = 5580717767809657474L;
 	private static ArrayList<Site> pages = new ArrayList<>();
 	static {
-		pages.add(new InkBunny());
 		pages.add(new FurAffinity());
 		pages.add(new Weasyl());
 		pages.add(new FurryNetwork());
-		pages.add(new DeviantArt());
 		pages.add(new E621());
 		pages.add(new SoFurry());
 	}
