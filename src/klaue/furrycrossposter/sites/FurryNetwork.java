@@ -167,7 +167,7 @@ public class FurryNetwork extends Site {
 			if (notificationCheckboxSelected && imageInfo.hasNoNotification()) {
 				confirmForm.findElement(By.className("checkbox-input__label")).click();
 			}
-			confirmForm.findElement(By.className("button--action--create")).click();
+			//confirmForm.findElement(By.className("button--action--create")).click();
 		}
 		
 		// open correct end url
