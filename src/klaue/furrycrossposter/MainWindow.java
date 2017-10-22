@@ -105,10 +105,6 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	
 	private JCheckBox chkMale = new JCheckBox("Male");
 	private JCheckBox chkFemale = new JCheckBox("Female");
-	private JCheckBox chkHerm = new JCheckBox("Herm");
-	private JCheckBox chkDickgirl = new JCheckBox("Dickgirl");
-	private JCheckBox chkCuntboy = new JCheckBox("Cuntboy");
-	private JCheckBox chkMaleherm = new JCheckBox("Maleherm");
 	private JCheckBox chkMtF = new JCheckBox("M2F Trans");
 	private JCheckBox chkFtM = new JCheckBox("F2M Trans");
 	
@@ -279,18 +275,6 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		genderChkPanel.add(Box.createHorizontalStrut(10));
 		chkFemale.addActionListener(this);
 		genderChkPanel.add(chkFemale);
-		genderChkPanel.add(Box.createHorizontalStrut(10));
-		chkHerm.addActionListener(this);
-		genderChkPanel.add(chkHerm);
-		genderChkPanel.add(Box.createHorizontalStrut(10));
-		chkDickgirl.addActionListener(this);
-		genderChkPanel.add(chkDickgirl);
-		genderChkPanel.add(Box.createHorizontalStrut(10));
-		chkCuntboy.addActionListener(this);
-		genderChkPanel.add(chkCuntboy);
-		genderChkPanel.add(Box.createHorizontalStrut(10));
-		chkMaleherm.addActionListener(this);
-		genderChkPanel.add(chkMaleherm);
 		genderChkPanel.add(Box.createHorizontalStrut(10));
 		chkFtM.addActionListener(this);
 		genderChkPanel.add(chkFtM);
@@ -493,14 +477,6 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 			imageInfo.setGender(ImageInfo.Gender.MALE, chkMale.isSelected());
 		} else if (arg0.getSource() == this.chkFemale) {
 			imageInfo.setGender(ImageInfo.Gender.FEMALE, chkFemale.isSelected());
-		} else if (arg0.getSource() == this.chkHerm) {
-			imageInfo.setGender(ImageInfo.Gender.HERM, chkHerm.isSelected());
-		} else if (arg0.getSource() == this.chkDickgirl) {
-			imageInfo.setGender(ImageInfo.Gender.DICKGIRL, chkDickgirl.isSelected());
-		} else if (arg0.getSource() == this.chkCuntboy) {
-			imageInfo.setGender(ImageInfo.Gender.CUNTBOY, chkCuntboy.isSelected());
-		} else if (arg0.getSource() == this.chkMaleherm) {
-			imageInfo.setGender(ImageInfo.Gender.MALEHERM, chkMaleherm.isSelected());
 		} else if (arg0.getSource() == this.chkMtF) {
 			imageInfo.setGender(ImageInfo.Gender.M2F, chkMtF.isSelected());
 		} else if (arg0.getSource() == this.chkFtM) {

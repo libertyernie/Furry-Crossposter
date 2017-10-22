@@ -183,12 +183,6 @@ public class FurAffinity extends Site {
 				case FEMALE:
 					genderList.selectByValue("3");
 					break;
-				case CUNTBOY:
-				case DICKGIRL:
-				case HERM:
-				case MALEHERM:
-					genderList.selectByValue("4");
-					break;
 				case F2M:
 				case M2F:
 					genderList.selectByValue("5");
