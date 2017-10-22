@@ -71,7 +71,7 @@ public class Weasyl extends Site {
 		} else if (imageInfo.getSexualRating() == RatingSexual.NONE && imageInfo.getViolenceRating() != RatingViolence.VIOLENCE_EX) {
 			// sex not, violence moderate. weasyl counts even bare breasts as explicit, so better play it safe and make every
 			// sexual thing explicit
-			rating.selectByValue("20"); // Moderate (13+)
+			rating.selectByValue("10"); // Moderate category no longer exists, merged into general
 		} else if(imageInfo.getSexualRating() == RatingSexual.NONE) {
 			// violence ex, but nudity not
 			rating.selectByValue("30"); // Mature (18+ non-sexual)
