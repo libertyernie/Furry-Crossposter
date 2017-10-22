@@ -439,7 +439,8 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 					StringBuilder sb = new StringBuilder();
 					for (String s : imported.tags) {
 						s = s.replace(" ", "_");
-						Tag.Type type = FurryCrossposter.tags.get(s).getType();
+						Tag tag = FurryCrossposter.tags.get(s);
+						Tag.Type type = tag == null ? Tag.Type.GENERAL : tag.getType();
 						if (field == speciesTags ^ type != Tag.Type.SPECIES) {
 							sb.append(s + " ");
 						}
