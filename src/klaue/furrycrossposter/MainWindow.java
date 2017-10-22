@@ -108,6 +108,7 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	private JCheckBox chkFemale = new JCheckBox("Female");
 	private JCheckBox chkMtF = new JCheckBox("M2F Trans");
 	private JCheckBox chkFtM = new JCheckBox("F2M Trans");
+	private JCheckBox chkAmb = new JCheckBox("Ambiguous");
 	
 	private JTextPane speciesTags = new JTextPane();
 	private JTextPane kinkTags = new JTextPane();
@@ -119,6 +120,10 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	
 	public MainWindow(JsonArtData imported) {
 		imageInfo.addChangeListener(this);
+		
+		String userhome = System.getProperty("user.home");
+		fileChooser.setCurrentDirectory(new File(userhome +"\\Pictures"));
+		
 		FileFilter imageFilter = new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif");
 		fileChooser.setFileFilter(imageFilter);
 		fileChooser.setAccessory(new ImagePreview(fileChooser));
@@ -285,6 +290,9 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		genderChkPanel.add(Box.createHorizontalStrut(10));
 		chkMtF.addActionListener(this);
 		genderChkPanel.add(chkMtF);
+		genderChkPanel.add(Box.createHorizontalStrut(10));
+		chkAmb.addActionListener(this);
+		genderChkPanel.add(chkAmb);
 		
 		double sizeGeneralImageInfos[][] = {{TableLayout.PREFERRED, 10, TableLayout.FILL}, //width
 				{TableLayout.PREFERRED, 10, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, 5, TableLayout.PREFERRED}}; // height
@@ -498,6 +506,8 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 			imageInfo.setGender(ImageInfo.Gender.M2F, chkMtF.isSelected());
 		} else if (arg0.getSource() == this.chkFtM) {
 			imageInfo.setGender(ImageInfo.Gender.M2F, chkFtM.isSelected());
+		} else if (arg0.getSource() == this.chkAmb) {
+			imageInfo.setGender(ImageInfo.Gender.AMBIGUOUS, chkAmb.isSelected());
 		} else if (arg0.getSource() == this.btnLetsDoThisShit) {
 			// will only happen if at least one page works
 			new UploadDialog(imageInfo, pages);
@@ -720,9 +730,9 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 				+ "http://double-helix.industries/applications/furrycrossposter/<br/>"
 				+ "&copy; 2016-2017 Akhlys<br/>"
 				+ "<br/>"
-				//+ "Additional changes &copy; 2017 Lycantiger<br/>"
-				//+ "https://github.com/Lycantiger/Furry-Crossposter<br/>"
-				//+ "<br/>"
+				+ "Additional changes &copy; 2017 Lycantiger<br/>"
+				+ "https://github.com/Lycantiger/Furry-Crossposter<br/>"
+				+ "<br/>"
 				+ "<pre>"
 				+ "Permission is hereby granted, free of charge, to any person obtaining a copy\r\n" + 
 				"of this software and associated documentation files (the \"Software\"), to deal\r\n" + 

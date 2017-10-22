@@ -41,7 +41,7 @@ public class ImageInfo implements ChangeListener {
 	    }
 	}
     
-    public enum Gender {MALE("male"), FEMALE("female"),
+    public enum Gender {AMBIGUOUS("ambiguous_gender"), MALE("male"), FEMALE("female"),
     					M2F("mtf"), F2M("ftm");
 	    private final String tag;
 	    private Gender(String s) {
