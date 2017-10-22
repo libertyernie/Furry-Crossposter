@@ -127,6 +127,8 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		
+		this.setTitle("Crosspost Mini - Based on " + this.getTitle());
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		this.add(mainPanel);
