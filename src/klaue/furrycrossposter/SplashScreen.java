@@ -3,6 +3,7 @@ package klaue.furrycrossposter;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,15 +17,21 @@ public class SplashScreen extends JFrame implements Runnable {
 	private static final long serialVersionUID = -8894852931512296126L;
 
 	public SplashScreen() {
-		this.setTitle("Crosspost Mini");
+		this.setTitle("CrosspostSharp EFC");
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.add(mainPanel);
-		
+
+		mainPanel.add(new JLabel(this.getTitle()));
+		mainPanel.add(new JLabel("https://github.com/libertyernie/Furry-Crossposter"));
+		mainPanel.add(new JLabel(" "));
+		mainPanel.add(new JLabel("Based on Furry Crossposter by Double Helix Industries"));
+		mainPanel.add(new JLabel(" "));
 		mainPanel.add(new JLabel("Loading..."));
 		
-		setResizable(false);
+		setUndecorated(true);
 		setMinimumSize(new Dimension(300, 1));
 		pack();
 

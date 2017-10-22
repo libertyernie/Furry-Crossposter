@@ -1,5 +1,6 @@
 package klaue.furrycrossposter;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -113,7 +114,8 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	private JTextPane otherTags = new JTextPane();
 	
 	private JLabel lblNonworkingSizes = new JLabel();
-	private JButton btnLetsDoThisShit = new JButton("Let's do this! Select pages to upload to!");
+	private JButton btnLetsDoThisShit = new JButton("Upload");
+	private JButton btnAbout = new JButton("About");
 	
 	public MainWindow(JsonArtData imported) {
 		imageInfo.addChangeListener(this);
@@ -127,7 +129,7 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		
-		this.setTitle("Crosspost Mini - Based on " + this.getTitle());
+		this.setTitle("CrosspostSharp EFC - Based on " + this.getTitle());
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -244,7 +246,7 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		titleText.setAlignmentX(LEFT_ALIGNMENT);
 		titleText.setMaximumSize(new Dimension(500, titleText.getPreferredSize().height) );
 
-		descrText.setText("Uploaded using Furry Crossposter!");
+		descrText.setText("Uploaded using CrossphostSharp (EFC)");
 		imageInfo.setDescription(descrText.getText());
 		descrText.getDocument().addDocumentListener(this);
 		descrText.setWrapStyleWord(true);
@@ -380,10 +382,23 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		lblNonworkingSizes.setFont(lblNonworkingSizes.getFont().deriveFont(Font.PLAIN));
 		mainPanel.add(lblNonworkingSizes);
 		mainPanel.add(Box.createVerticalStrut(10));
+		
+		JPanel pnlButtons = new JPanel(new BorderLayout());
+		mainPanel.add(pnlButtons);
+		pnlButtons.setAlignmentX(0);
+		pnlButtons.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
 
 		btnLetsDoThisShit.addActionListener(this);
 		btnLetsDoThisShit.setEnabled(false);
-		mainPanel.add(btnLetsDoThisShit);
+		pnlButtons.add(btnLetsDoThisShit, BorderLayout.WEST);
+		
+		btnAbout = new JButton("About");
+		btnAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showAbout();
+			}
+		});
+		pnlButtons.add(btnAbout, BorderLayout.EAST);
 		
 		this.setVisible(true);
 		
@@ -687,6 +702,49 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 			lblNonworkingSizes.setText("");
 		}
 		btnLetsDoThisShit.setEnabled(worksOnAtLeastOneSite);
+	}
+	
+	private void showAbout() {
+		JFrame f = new JFrame();
+		JPanel p = new JPanel();
+		f.setContentPane(p);
+		
+		p.add(new JLabel("<html>"
+				+ "<head></head>"
+				+ "<body>"
+				+ "CrosspostSharp EFC (External Furry Crossposter)<br/>"
+				+ "https://github.com/libertyernie/Furry-Crossposter<br/>"
+				+ "&copy; 2017 libertyernie<br/>"
+				+ "<br/>"
+				+ "Based on Furry Crossposter<br/>"
+				+ "http://double-helix.industries/applications/furrycrossposter/<br/>"
+				+ "&copy; 2016-2017 Akhlys<br/>"
+				+ "<br/>"
+				//+ "Additional changes &copy; 2017 Lycantiger<br/>"
+				//+ "https://github.com/Lycantiger/Furry-Crossposter<br/>"
+				//+ "<br/>"
+				+ "<pre>"
+				+ "Permission is hereby granted, free of charge, to any person obtaining a copy\r\n" + 
+				"of this software and associated documentation files (the \"Software\"), to deal\r\n" + 
+				"in the Software without restriction, including without limitation the rights\r\n" + 
+				"to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\r\n" + 
+				"copies of the Software, and to permit persons to whom the Software is\r\n" + 
+				"furnished to do so, subject to the following conditions:\r\n" + 
+				"\r\n" + 
+				"The above copyright notice and this permission notice shall be included in all\r\n" + 
+				"copies or substantial portions of the Software.\r\n" + 
+				"\r\n" + 
+				"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\n" + 
+				"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\n" + 
+				"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\n" + 
+				"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\n" + 
+				"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\n" + 
+				"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\r\n" + 
+				"SOFTWARE."
+				+ "</pre>"));
+		
+		f.pack();
+		f.setVisible(true);
 	}
 }
 
