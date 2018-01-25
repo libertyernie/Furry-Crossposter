@@ -189,6 +189,9 @@ public class FurAffinity extends Site {
 				case M2F:
 					genderList.selectByValue("5");
 					break;
+				case NONBINARY:
+					genderList.selectByValue("7"); // Other / Not Specified
+					break;
 				default:// never reached
 					genderList.selectByValue("0"); // Any
 					break;

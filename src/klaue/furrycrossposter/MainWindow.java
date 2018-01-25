@@ -105,6 +105,7 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	private JCheckBox chkMtF = new JCheckBox("M2F Trans");
 	private JCheckBox chkFtM = new JCheckBox("F2M Trans");
 	private JCheckBox chkAmb = new JCheckBox("Ambiguous");
+	private JCheckBox chkNonbinary = new JCheckBox("Nonbinary");
 	
 	private JTextPane speciesTags = new JTextPane();
 	private JTextPane kinkTags = new JTextPane();
@@ -292,6 +293,9 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		genderChkPanel.add(Box.createHorizontalStrut(10));
 		chkAmb.addActionListener(this);
 		genderChkPanel.add(chkAmb);
+		genderChkPanel.add(Box.createHorizontalStrut(10));
+		chkNonbinary.addActionListener(this);
+		genderChkPanel.add(chkNonbinary);
 		
 		double sizeGeneralImageInfos[][] = {{TableLayout.PREFERRED, 10, TableLayout.FILL}, //width
 				{TableLayout.PREFERRED, 10, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, 5, TableLayout.PREFERRED}}; // height
@@ -508,6 +512,8 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 			imageInfo.setGender(ImageInfo.Gender.M2F, chkFtM.isSelected());
 		} else if (arg0.getSource() == this.chkAmb) {
 			imageInfo.setGender(ImageInfo.Gender.AMBIGUOUS, chkAmb.isSelected());
+		} else if (arg0.getSource() == this.chkNonbinary) {
+			imageInfo.setGender(ImageInfo.Gender.NONBINARY, chkNonbinary.isSelected());
 		} else if (arg0.getSource() == this.btnLetsDoThisShit) {
 			// will only happen if at least one page works
 			new UploadDialog(imageInfo, pages);
