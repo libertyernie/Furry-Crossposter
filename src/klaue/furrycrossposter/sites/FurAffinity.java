@@ -75,7 +75,11 @@ public class FurAffinity extends Site {
 		
 		driver = getDriver();
 
-		driver.get("https://www.furaffinity.net/login/");
+		if (imageInfo.getSexualRating() == RatingSexual.NONE && imageInfo.getViolenceRating() == RatingViolence.NONE) {
+			driver.get("https://sfw.furaffinity.net/login/");
+		} else {
+			driver.get("https://www.furaffinity.net/login/");
+		}
 		
 		// wait for login
 		WebDriverWait wait = new WebDriverWait(driver, 60);
