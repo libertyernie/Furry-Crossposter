@@ -62,7 +62,6 @@ import javax.swing.text.DocumentFilter;
 
 import klaue.furrycrossposter.sites.E621;
 import klaue.furrycrossposter.sites.FurAffinity;
-import klaue.furrycrossposter.sites.FurryNetwork;
 import klaue.furrycrossposter.sites.Site;
 import klaue.furrycrossposter.sites.Weasyl;
 import klaue.furrycrossposter.sites.sofurry.SoFurry;
@@ -75,7 +74,6 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 	static {
 		pages.add(new FurAffinity());
 		pages.add(new Weasyl());
-		pages.add(new FurryNetwork());
 		pages.add(new E621());
 		pages.add(new SoFurry());
 	}
