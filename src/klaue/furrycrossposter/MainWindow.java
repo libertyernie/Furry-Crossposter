@@ -425,18 +425,10 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 			if (imported.description != null) {
 				descrText.setText(imported.description);
 			}
-			if (imported.violence != null) {
-				if (imported.violence.moderate)
-					ratingViolenceBox.setSelectedItem(ImageInfo.RatingViolence.VIOLENCE_MOD);
-				if (imported.violence.explicit)
-					ratingViolenceBox.setSelectedItem(ImageInfo.RatingViolence.VIOLENCE_EX);
-			}
-			if (imported.nudity != null) {
-				if (imported.nudity.moderate)
-					ratingSexualBox.setSelectedItem(ImageInfo.RatingSexual.NUDITY_MOD);
-				if (imported.nudity.explicit)
-					ratingSexualBox.setSelectedItem(ImageInfo.RatingSexual.NUDITY_EX);
-			}
+			if (imported.mature)
+				ratingSexualBox.setSelectedItem(ImageInfo.RatingSexual.NUDITY_MOD);
+			if (imported.adult)
+				ratingSexualBox.setSelectedItem(ImageInfo.RatingSexual.NUDITY_EX);
 			if (imported.tags != null) {
 				for (JTextPane field : new JTextPane[] { speciesTags, otherTags }) {
 					StringBuilder sb = new StringBuilder();
