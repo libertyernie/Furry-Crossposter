@@ -8,12 +8,8 @@ public class JsonArtData {
 	public String description;
 	public String[] tags;
 	
-	public class MatureLevel {
-		public boolean moderate;
-		public boolean explicit;
-	}
-	public MatureLevel nudity;
-	public MatureLevel violence;
+	public boolean mature;
+	public boolean adult;
 	
 	// optional / deprecated
 	public String imagePath;
