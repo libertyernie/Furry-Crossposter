@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -402,7 +403,17 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		this.setVisible(true);
 		
 		if (imported != null) {
-			if (imported.imagePath != null) {
+			if (imported.data != null) {
+				try {
+					File file = File.createTempFile("importedimage", ".bin");
+					file.deleteOnExit();
+					Files.write(file.toPath(), imported.getData());
+					setImage(file, false);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(this, "Cannot write to temporary file on disk");
+					e1.printStackTrace();
+				}
+			} else if (imported.imagePath != null) {
 				setImage(new File(imported.imagePath), false);
 			}
 			if (imported.thumbnailPath != null) {
