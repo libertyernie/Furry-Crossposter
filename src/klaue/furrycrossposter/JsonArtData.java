@@ -4,6 +4,7 @@ import java.util.Base64;
 
 public class JsonArtData {
 	public String data; // base64
+	public String contentType;
 	public String title;
 	public String description;
 	public String[] tags;

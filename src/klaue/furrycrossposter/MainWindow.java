@@ -415,7 +415,8 @@ public class MainWindow extends JFrame implements ActionListener, DocumentListen
 		if (imported != null) {
 			if (imported.data != null) {
 				try {
-					File file = File.createTempFile("importedimage", ".bin");
+					String ext = imported.contentType.substring(imported.contentType.indexOf('/') + 1);
+					File file = File.createTempFile("importedimage", "." + ext);
 					file.deleteOnExit();
 					Files.write(file.toPath(), imported.getData());
 					setImage(file, false);
