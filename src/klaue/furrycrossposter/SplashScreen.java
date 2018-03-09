@@ -17,7 +17,7 @@ public class SplashScreen extends JFrame implements Runnable {
 	private static final long serialVersionUID = -8894852931512296126L;
 
 	public SplashScreen() {
-		this.setTitle("CrosspostSharp EFC");
+		this.setTitle("efc.jar");
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
