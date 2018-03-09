@@ -1,4 +1,4 @@
-# External Furry Crossposter (EFC) for CrosspostSharp
+# efc.jar
 A crossposter for furry art to diverse furry art websites like FurAffinity, Weasyl, etc.
 
 This forked version of the application is intended to be used with [CrosspostSharp](https://github.com/libertyernie/CrosspostSharp), providing upload support for additional sites. CrosspostSharp is written in C#/.NET, while this app is in Java.
@@ -11,4 +11,4 @@ Added:
 Removed:
 * splash screen
 * gender options used primarily in explicit artwork
-* DeviantArt and Inkbunny support (CrosspostSharp supports these sites)
+* DeviantArt, Furry Network, and Inkbunny support (CrosspostSharp supports these sites)
